@@ -1,0 +1,8 @@
+{
+    "orgName": "Fact Sheet",
+    "edition": "Partner Developer",
+    "features": ["AuthorApex", "ContactsToMultipleAccounts", "API", "DebugApex", "ForceComPlatform"],
+    "orgPreferences" : {
+        "enabled": ["S1DesktopEnabled"]
+    }
+}
