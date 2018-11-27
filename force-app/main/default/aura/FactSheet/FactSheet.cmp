@@ -1,0 +1,6 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute name="factSheetId" type="String" required="true" />
+    <aura:attribute name="sObjectName" type="String" />
+    
+    factSheetId = {!v.factSheetId}
+</aura:component>

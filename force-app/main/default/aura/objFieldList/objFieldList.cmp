@@ -1,0 +1,4 @@
+<aura:component>
+        <aura:attribute name="objFields" type="Object"/>
+        <aura:attribute name="objFieldsSelected" type="Object"/>
+</aura:component>	

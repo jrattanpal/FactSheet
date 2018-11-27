@@ -10,7 +10,7 @@ public with sharing class sObjectUtils {
         }
         //Check if sObject is accessible
         if(!targetType.getDescribe().isAccessible()){ throw new CustomException.sObjectNotAccessibleException('The requested SObject type [' + typeName + '] is not accessible for this user.');
-                                                    }        
+                                                    }
         return targetType;
     }
     
@@ -50,17 +50,28 @@ public with sharing class sObjectUtils {
     public static String getSObjectFields(String typeName){
         Schema.SObjectType targetType = getSObjectType(typeName);
         
-        Map<String, String> fieldList = new Map<String, String>();
+        //Map<String, String> fieldList = new Map<String, String>();
+        List<fieldWrapper> fieldList = new List<fieldWrapper>();
         
         Map <String, Schema.SObjectField> fieldMap = targetType.getDescribe().fields.getMap();
+        
+        
         
         for(Schema.SObjectField sfield : fieldMap.Values()){
             Schema.DescribeFieldResult dfield = sfield.getDescribe();
             if(dfield.isAccessible()){
-                fieldList.put(dfield.getName(), dfield.getLabel());
+                fieldWrapper fw = new fieldWrapper();
+                fw.Name = String.valueOf(dfield.getName());
+                fw.Label = String.valueOf(dfield.getLabel());
+                fieldList.add(fw);
+//                fieldList.put(dfield.getName(), dfield.getLabel());
             }
         }
         
         return JSON.serialize(fieldList);
+    }
+    public class fieldWrapper{
+        public String Name;
+        public String Label;
     }
 }

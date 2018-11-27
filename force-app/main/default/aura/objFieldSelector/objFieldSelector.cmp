@@ -1,0 +1,34 @@
+<aura:component controller="FactSheetManager" implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+    <aura:attribute name="obj" type="String" required="true"/>
+    
+    <aura:attribute name="objLayoutList" type="List"/>
+    <aura:attribute name="objLayoutSelected" type="String"/>
+    
+    <aura:attribute name="objFieldList" type="List"/>
+    <aura:attribute name="objFieldSelected" type="String"/>
+    
+    <aura:attribute name="objFields" type="Object"/>
+    <aura:attribute name="objFieldsSelected" type="Object"/>
+    
+    <div class="slds-form slds-form_horizontal">
+
+        <div>Object: <strong>{!v.obj}</strong></div>
+
+
+        <lightning:select name="objLayoutList" label="Select a Layout:" aura:id="objLayoutList" value="{!v.objLayoutSelected}">
+            <aura:iteration items="{!v.objLayoutList}" var="option">
+                <option text="{!option.label}" value="{!option.id}" selected="{!option.selected}"/>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:select name="objFieldList" label="Select a field:" aura:id="objFieldList" value="{!v.objFieldSelected}">
+            <aura:iteration items="{!v.objFieldList}" var="option">
+                <option text="{!option.label}" value="{!option.id}" selected="{!option.selected}"/>
+            </aura:iteration>
+        </lightning:select>
+
+    </div>
+    
+    <c:objFieldList objFields="{!v.objFields}" objFieldsSelected="{!v.objFieldsSelected}" />
+</aura:component>
